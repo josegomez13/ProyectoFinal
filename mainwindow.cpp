@@ -1,5 +1,23 @@
-#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QList>
+#include <vector>
+#include "mainwindow.h"
+#include <QString>
+#include <QMessageBox> // para imprimir los mensajes en recuadro
+#include <QDebug> // para imprimir mensajes
+#include <QtGui>
+#include <QImage>
+#include <stdlib.h>
+#include <QLabel>
+#include <QPixmap>
+#include <QtWidgets>
+#include <QtGui>
+#include <sstream>
+#include <fstream>
+#include <iostream>
+#include <string.h>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

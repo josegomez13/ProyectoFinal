@@ -14,9 +14,12 @@
 #include <QListWidget>
 
 
+
+
 // MIS CLASES
 
 #include <bolita.h>
+#include <nube.h>
 #include <obstaculo.h>
 
 using namespace std;

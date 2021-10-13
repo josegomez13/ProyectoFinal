@@ -12,11 +12,13 @@ SOURCES += \
     bolita.cpp \
     main.cpp \
     mainwindow.cpp \
+    nube.cpp \
     obstaculo.cpp
 
 HEADERS += \
     bolita.h \
     mainwindow.h \
+    nube.h \
     obstaculo.h
 
 FORMS += \
