@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     bolita.cpp \
+    distancia.cpp \
     main.cpp \
     mainwindow.cpp \
     nube.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     bolita.h \
+    distancia.h \
     mainwindow.h \
     nube.h \
     obstaculo.h
