@@ -11,6 +11,7 @@
 #include "proyectil.h"
 
 
+
 //Creacion clase Nube nueva
 class Nube: public QObject, public QGraphicsItem
 {
