@@ -8,7 +8,7 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <math.h>
-#include "proyectil.h"
+
 
 
 
