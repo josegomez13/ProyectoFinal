@@ -12,7 +12,7 @@
 
 
 
-//Creacion clase Nube nueva
+//Creacion clase Nube nueva xd
 class Nube: public QObject, public QGraphicsItem
 {
     Q_OBJECT
