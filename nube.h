@@ -2,17 +2,51 @@
 #define NUBE_H
 
 #include <QObject>
-#include <QPainter>
 #include <QGraphicsItem>
-#include <QGraphicsScene>
-#include <stdlib.h>
-#include <time.h>
-#include <QGraphicsPixmapItem>
-#include <QTimer>
+#include <QPainter>
 #include <QPixmap>
+#include <QTimer>
+#include <QGraphicsScene>
+#include <math.h>
+#include "proyectil.h"
 
 
-class Nube :public QObject, public QGraphicsItem
+//Creacion clase Nube nueva
+class Nube: public QObject, public QGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    Nube();
+    Nube(short int op);
+    ~Nube();
+
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget );
+
+private:
+    //--------------- Atributos privados de la clase -----------------------------//
+    QTimer *temporizadorNube;
+    QPixmap *pixmapNube;
+    qreal columnas, alto, ancho, tmp_sumador;
+    short int velocidad , amplitud, limite , temporal;
+    bool direction, dir , identity;
+
+    // ------------    métodos privados de la clase     ---------------------------//
+    void generarDireccion();
+    void cambiarAnimacion();
+
+private slots:
+    void moverNube();
+    void moverNubeParabolicas();
+};
+
+#endif // NUBE_H
+
+
+
+//Creacion clase Nube antigua
+/* class Nube :public QObject, public QGraphicsItem
 {
 
   Q_OBJECT
@@ -56,3 +90,4 @@ private:
 };
 
 #endif // NUBE_H
+*/
