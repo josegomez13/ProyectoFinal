@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     asteroides.cpp \
     bolita.cpp \
+    distancia.cpp \
     main.cpp \
     mainwindow.cpp \
     nube.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     asteroides.h \
     bolita.h \
+    distancia.h \
     mainwindow.h \
     nube.h \
     obstaculo.h

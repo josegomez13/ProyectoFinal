@@ -124,7 +124,7 @@ void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 void bolita::caidaLibre()
 {   //Movimiento de Caida libre
-    if(this->posy>450 ){
+    if(this->posy>450){
         tierra=true;
         this->salto = false;
         tiempo = 0;
@@ -169,6 +169,8 @@ void bolita::MoveRight()
     setPos(posx,posy);}
 }
 
+//Funcion que verifica si el personaje esta en tierra a traves del booleano tierra
+
 void bolita::enelsuelo()
 {
     tierra = true;
@@ -176,11 +178,12 @@ void bolita::enelsuelo()
     tiempo = 0;
 }
 
-//Se actualiza recorre el sprite como una matriz 3x4 tanto para la izquierda como derecha
-//Estas cantidades estan en Pixeles
+//Se actualiza, recorre el sprite como una matriz tanto para la izquierda como derecha
+//Estas cantidades están en Pixeles
+
 void bolita::actualizar_sprite_derecha()
 {   //Se recorre la matriz y se varia dy de a 128 pixeles para que el personaje se vea caminando
-    //dx es estatico dado que solo recorre la tercera fila
+    //dx es estático dado que solo recorre la tercera fila
     dx=333;
     dy+=128;
     if(dy >=128*4)
