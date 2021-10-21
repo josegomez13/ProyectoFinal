@@ -9,18 +9,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    asteroides.cpp \
     bolita.cpp \
     distancia.cpp \
+    dulces.cpp \
     main.cpp \
     mainwindow.cpp \
     nube.cpp \
     obstaculo.cpp
 
 HEADERS += \
-    asteroides.h \
     bolita.h \
     distancia.h \
+    dulces.h \
     mainwindow.h \
     nube.h \
     obstaculo.h

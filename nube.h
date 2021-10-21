@@ -2,52 +2,20 @@
 #define NUBE_H
 
 #include <QObject>
-#include <QGraphicsItem>
 #include <QPainter>
-#include <QPixmap>
-#include <QTimer>
+#include <QGraphicsItem>
 #include <QGraphicsScene>
-#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#include <QGraphicsPixmapItem>
+#include <QTimer>
+#include <QPixmap>
+#include "dulces.h"
+#include <iostream>
+#include <QVector>
 
 
-
-
-//Creacion clase Nube nueva xd
-class Nube: public QObject, public QGraphicsItem
-{
-    Q_OBJECT
-
-public:
-    Nube();
-    Nube(short int op);
-    ~Nube();
-
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget );
-
-private:
-    //--------------- Atributos privados de la clase -----------------------------//
-    QTimer *temporizadorNube;
-    QPixmap *pixmapNube;
-    qreal columnas, alto, ancho, tmp_sumador;
-    short int velocidad , amplitud, limite , temporal;
-    bool direction, dir , identity;
-
-    // ------------    métodos privados de la clase     ---------------------------//
-    void generarDireccion();
-    void cambiarAnimacion();
-
-private slots:
-    void moverNube();
-    void moverNubeParabolicas();
-};
-
-#endif // NUBE_H
-
-
-
-//Creacion clase Nube antigua
-/* class Nube :public QObject, public QGraphicsItem
+class Nube :public QObject, public QGraphicsItem
 {
 
   Q_OBJECT
@@ -67,10 +35,26 @@ public:
      float getVY() const;//velocidad en y
      float getE() const;//coeficiente
      Nube *nube();//puntero de la clase mosca
-     QTimer *timer;//timer de para la clase
+     QTimer  *timer;//timer de para la clase
      QPixmap *pixmap;//pixmap para el sprite de las moscas
+     Dulces  *dulceSorpresa;
+     int ciclosLanzamientoDulces;
+     QVector <Dulces *> arregloDulces;
+
+     // jugando
+
+     void moverDiagonalmente(void);
+     void moverErraticamente();
+     void moverZigZag();
+     void generarDulces();
+
+
+
 private:
-     float PX;//pos x
+    //limites de la nube
+    //
+    bool moverHaciaDerecha;
+    float PX;//pos x
     float PY;//pos y
     float mass;//masa
     float R; //radio
@@ -88,7 +72,11 @@ private:
     int alto;
     int dy;
 
+    // funciones que unicamente usará la nube
+
+private slots:
+    void controladorDeMovimientos();
+    //
 };
 
 #endif // NUBE_H
-*/
