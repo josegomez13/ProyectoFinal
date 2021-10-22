@@ -5,13 +5,14 @@
 #include <QString>
 #include <QMessageBox> // para imprimir los mensajes en recuadro
 #include <QDebug> // para imprimir mensajes
-#include <QtGui>
+//#include <QtGui>
 #include <QImage>
 #include <stdlib.h>
 #include <QLabel>
 #include <QPixmap>
-#include <QtWidgets>
-#include <QtGui>
+#include <time.h>
+//#include <QtWidgets>
+//#include <QtGui>
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -24,13 +25,22 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    controladorEventos =  new QTimer();
+    controladorEventos->start(100);
+    connect(controladorEventos,SIGNAL(timeout()),this,SLOT(moverObjetos()));
+    //      el que envia la señal, que señal , la clase  ,  slot que recibe
 
+
+
+    ui->setupUi(this);
     scene= new QGraphicsScene();
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,700,450);
     personaje_principal = new bolita(10,20,30); //x,y,tamaño
     scene->addItem(personaje_principal);
+
+    nubePrueba =  new Nube(true);
+    scene->addItem(nubePrueba);
 
     Obstaculos.push_back(new obstaculo(0,0,700,20));
     scene->addItem(Obstaculos.back());
@@ -50,7 +60,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::EvaluarColision()
+
+
+bool MainWindow::EuvalarColision(void)
 {
     bool colision = false;
     QList<obstaculo*>:: Iterator it; //itarador para recorrer la lista de obstaculos
@@ -62,22 +74,38 @@ bool MainWindow::EvaluarColision()
     return colision;
 }
 
+
+
+
+
+
+void MainWindow::moverObjetos()
+{
+    //scene->update();
+}
+
+
+
+
+
+
+/*
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
     if(evento->key()==Qt::Key_D)
         {
-        if(!EvaluarColision())
+        if(!this->EuvalarColision())
             personaje_principal->MoveRight();
         }
 
     else if(evento->key()==Qt::Key_A)
     {
-        if(!EvaluarColision())
+        if(this->EuvalarColision())
             personaje_principal->MoveLeft();
     }
 
 
-
 }
 
+*/
 

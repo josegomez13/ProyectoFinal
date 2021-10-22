@@ -56,3 +56,4 @@ void Dulces::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 }
 
+

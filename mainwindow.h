@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QList> // para utilizar el Qlist
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
 #include <QDebug>// para imprimir mensajes en la terminal
 #include <QMessageBox> // para imprimir mensajes como recuadros
 #include <QVector> // para usar los Qvector
@@ -12,6 +12,9 @@
 #include <iterator>
 #include <QMessageBox>
 #include <QListWidget>
+#include <nube.h>
+#include <QTimer>
+
 
 
 // MIS CLASES
@@ -36,7 +39,16 @@ public:
 
 
 private:
+    //
+    // métodos propios
+
+    bool EuvalarColision(void);
+    //void keyPressEvent(QKeyEvent *evento);
+
+    //
+    QTimer *controladorEventos;
     bool bandera;
+    Nube *nubePrueba;
     Ui::MainWindow *ui;
     QString nombre_usuario; // Variable que guardará el nombre del usuario
     int guardar = 0;
@@ -49,6 +61,9 @@ private:
 
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene;
-    void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
+    //void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
+
+public slots:
+    void moverObjetos();
 };
 #endif // MAINWINDOW_H

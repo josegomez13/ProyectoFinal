@@ -91,6 +91,7 @@ void Nube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,0,ancho,alto);
     painter->drawRect(this->PX,this->PY,this->ancho,this->alto);
+
 }
 
 
@@ -254,3 +255,4 @@ void Nube::controladorDeMovimientos()
     scene()->update();
 
 }
+
