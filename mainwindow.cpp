@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene= new QGraphicsScene();
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,700,450);
-    personaje_principal = new bolita(10,20,1); //x,y,tamaño
+    personaje_principal = new bolita(100,390,1); //x,y,tamaño
     scene->addItem(personaje_principal);
 
     nubePrueba =  new Nube(true);
@@ -85,11 +85,6 @@ void MainWindow::moverObjetos()
 }
 
 
-
-
-
-
-/*
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
     if(evento->key()==Qt::Key_D)
@@ -100,12 +95,17 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
     else if(evento->key()==Qt::Key_A)
     {
-        if(this->EuvalarColision())
+        if(!this->EuvalarColision())
             personaje_principal->MoveLeft();
     }
 
+    else if(evento->key()==Qt::Key_W)
+    {
+        if(!this->EuvalarColision())
+            personaje_principal->saltar();
+    }
 
 }
 
-*/
+
 

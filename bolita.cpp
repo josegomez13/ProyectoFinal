@@ -3,7 +3,7 @@
 #include <QTimer>
 #include <math.h>
 #include <cmath>
-
+#include <iostream>
 
 
 //retorna un booleano que permite afirmar si el personaje esta en el aire.
@@ -71,10 +71,6 @@ bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos 
          this->pixmap = new QPixmap("Imagenes/gordo-sprite.png");
    }
 
-   //Distancia en X y Y  a la que el personaje está en la ventana del juego inicialmente
-   this->dx = 4;
-   this->dy =4;
-
    //Ancho y alto de la imagen del personaje
    this->ancho = 124;
    this->alto=160;
@@ -122,10 +118,12 @@ void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
 
     painter->setBrush(Qt::red);
-    painter->drawRect(boundingRect());
+   // painter->drawRect(boundingRect());
     //painter->drawPix
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap);
-    painter->drawRect(100,100,10,10);
+   // painter->drawRect(posx,posy,10,10);
+    painter->drawRect(0,0,10,10);
+
 
 }
 
@@ -170,7 +168,9 @@ void bolita::saltar()
 //Movimiento Lineal hacia la izquierda
 
 void bolita::MoveLeft()
-{   if(posx>10){    //Se limita el movimiento del personaje en la escena
+
+{
+    if(posx>10){    //Se limita el movimiento del personaje en la escena
     posx -= (velocidad/2);
     setPos(posx,posy);}
 }

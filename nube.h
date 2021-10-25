@@ -43,7 +43,7 @@ public:
 
      // jugando
 
-     void moverDiagonalmente(void);
+     void moverSinuidalmente(void);
      void moverErraticamente();
      void moverZigZag();
      void generarDulces();
@@ -71,6 +71,9 @@ private:
     int ancho;
     int alto;
     int dy;
+    int amplitud;
+    int sumador;
+    int velocidad;
 
     // funciones que unicamente usará la nube
 
