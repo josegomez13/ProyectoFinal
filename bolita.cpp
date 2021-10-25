@@ -45,6 +45,8 @@ float bolita::getalto() const
     return alto;
 }
 
+
+
 void bolita::setalto(float value)
 {
     alto = value;
@@ -106,6 +108,8 @@ int bolita::getposy() const
 void bolita::setposy(int value)
 {
     posy = value;
+   //Retorna el valor de la posicion del personaje en el eje x
+
 }
 
 QRectF bolita::boundingRect() const // BoundingRect, es donde se va a dibujar el personaje
@@ -116,11 +120,15 @@ QRectF bolita::boundingRect() const // BoundingRect, es donde se va a dibujar el
 void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
+
     painter->setBrush(Qt::red);
     painter->drawRect(boundingRect());
     //painter->drawPix
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap);
+    painter->drawRect(100,100,10,10);
+
 }
+
 
 void bolita::caidaLibre()
 {   //Movimiento de Caida libre
@@ -129,6 +137,8 @@ void bolita::caidaLibre()
         this->salto = false;
         tiempo = 0;
     }
+
+
     //Se verifica si el personaje esta en el aire o no
     if (tierra==false){
         if (salto == true){
@@ -144,6 +154,7 @@ void bolita::caidaLibre()
 
 }
 
+
 void bolita::saltar()
 {   //Funcion saltar
     if (this->tiempo == 0){
@@ -157,11 +168,14 @@ void bolita::saltar()
 }
 
 //Movimiento Lineal hacia la izquierda
+
 void bolita::MoveLeft()
 {   if(posx>10){    //Se limita el movimiento del personaje en la escena
     posx -= (velocidad/2);
     setPos(posx,posy);}
 }
+
+
 //Movimiento Lineal hacia la derecha
 void bolita::MoveRight()
 {   if(posx<940){   //Se limita el movimiento del personaje en la escena

@@ -8,6 +8,17 @@
 
 Nube::Nube(bool bandera)
 {
+    this->PX=10;
+    this->PY=20;
+    this->ancho=20;
+    this->alto=20;
+    srand(time(0));
+    timer= new QTimer();
+    timer->start(50);
+    connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
+
+
+    /*
     // CENTRA
     this->setTransformOriginPoint(this->boundingRect().center());
 
@@ -56,7 +67,7 @@ Nube::Nube(bool bandera)
     timer->start(50);
     connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
 
-
+*/
 }
 
 
@@ -91,6 +102,7 @@ void Nube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 {
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,0,ancho,alto);
     painter->drawRect(this->PX,this->PY,this->ancho,this->alto);
+
 }
 
 
@@ -237,7 +249,10 @@ void Nube::generarDulces()
         iterador->caerDulceConstantement();
         if (iterador->comprobarColision()==true) {
             scene()->removeItem(iterador);
-            arregloDulces.at(i);
+            arregloDulces.removeAt(i);
+            std::cout << "El dulce ha sido eliminado" <<std::endl;
+
+            //arregloDulces.at(i);
         }
         i++;
     }
@@ -256,3 +271,4 @@ void Nube::controladorDeMovimientos()
     scene()->update();
 
 }
+
