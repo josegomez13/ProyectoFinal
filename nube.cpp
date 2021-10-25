@@ -2,7 +2,7 @@
 #include "nube.h"
 #include <math.h>
 #include <cmath>
-
+#include<QDebug>
 
 
 
@@ -23,8 +23,8 @@ Nube::Nube(bool bandera)
     // CENTRA
     this->setTransformOriginPoint(this->boundingRect().center());
 
-   // alto=20;
-   //ancho=200;
+    // alto=20;
+    //ancho=200;
     /*if(bandera==true){
     PX=100;//pos x
     PY=200;
@@ -42,7 +42,7 @@ Nube::Nube(bool bandera)
 */
 
 
-   // PY=rand()%200;//pos y
+    // PY=rand()%200;//pos y
     mass=5;//masa
     R=10; //radio
     VY=25; // velo en y
@@ -53,14 +53,13 @@ Nube::Nube(bool bandera)
     K=(rand()%10)/1000; // resistencia del aire
     //e=(0.5+(rand()%5)/10); // coeficiente de restitucion
     V=0; //vector de velocidad;
-    dt=0.1; // delta de tiempo
+    dt=0.02; // delta de tiempo
     pixmap=new QPixmap(":/Imagenes/1200px-Clouds_Cute_for_CSS_sprites.svg.png");//direccion del sprite
     setScale(0.5);
-    amplitud =  5 + rand() % 10;
-    sumador =0;
-    velocidad = 10;
+    amplitud =  20;
+    velocidad = 150;
     //this->moverHaciaDerecha = true;
-   // this->ciclosLanzamientoDulces = 0;
+    // this->ciclosLanzamientoDulces = 0;
 
 
 
@@ -73,10 +72,6 @@ Nube::Nube(bool bandera)
 
 
 }
-
-
-
-
 
 
 void Nube::actualizarPosyVel()//funcion para realizar el calculo de la posicion y la velocidad
@@ -171,20 +166,17 @@ Nube *Nube::nube()
 }
 
 
-
-
-
 void Nube::moverSinuidalmente()
 {
-    setPos(x()-velocidad*dt, y() + amplitud*sin(2*3.1415*sumador/2));
-            setPos(pos().x()-0.5,pos().y());
+    sumador = sumador + 0.02;
+    qDebug()<< " sumador: " <<sumador<<endl;
+    //PY = PY + amplitud*sin(2*3.1415*sumador/2);
+    setPos(PX, PY + amplitud*sin(2*3.1415*sumador/2));
+    //setPY(PY + amplitud*sin(2*3.1415*sumador/2));
+    qDebug()<< " velocidad: " <<velocidad<<endl;
 
 
 }
-
-
-
-
 
 
 void Nube::moverErraticamente()
@@ -194,13 +186,8 @@ void Nube::moverErraticamente()
 
 }
 
-
-
-
 void Nube::moverZigZag()
 {
-
-
 
     if (this->PX< 10 ) {
         // movernos hacia la derecha
@@ -220,12 +207,7 @@ void Nube::moverZigZag()
     }
 
 
-    // modificar el interval
-
-
 }
-
-
 
 
 void Nube::generarDulces()
@@ -264,15 +246,18 @@ void Nube::generarDulces()
 
 }
 
-
-
+void Nube::setPY(float newPY)
+{
+    PY = newPY;
+}
 
 
 void Nube::controladorDeMovimientos()
 {
     this->moverSinuidalmente();
+    this->moverZigZag();
     generarDulces();
-    this->setPos(this->PX,this->PY);
+    // this->setPos(this->PX,this->PY);
     scene()->update();
 
 }

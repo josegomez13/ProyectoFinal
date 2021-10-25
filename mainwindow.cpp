@@ -68,30 +68,33 @@ bool MainWindow::EuvalarColision(void)
     QList<obstaculo*>:: Iterator it; //itarador para recorrer la lista de obstaculos
     for(it= Obstaculos.begin(); it!= Obstaculos.end(); it++){
 
-       /*if((*it)-> collidesWithItem(personaje_principal))
+        /*if((*it)-> collidesWithItem(personaje_principal))
            colision = true;*/
     }
     return colision;
 }
 
 
-
-
-
-
 void MainWindow::moverObjetos()
 {
-    //scene->update();
+    if(personaje_principal->getsalto() == true){
+        personaje_principal->saltando();
+
+    }
+    else{
+        controladorEventos->stop();
+
+    }
 }
 
 
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
     if(evento->key()==Qt::Key_D)
-        {
+    {
         if(!this->EuvalarColision())
             personaje_principal->MoveRight();
-        }
+    }
 
     else if(evento->key()==Qt::Key_A)
     {
@@ -101,8 +104,14 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
     else if(evento->key()==Qt::Key_W)
     {
-        if(!this->EuvalarColision())
-            personaje_principal->saltar();
+        if(!this->EuvalarColision()){
+            personaje_principal->setsalto(true);
+            controladorEventos->start(20);
+        }
+        if(personaje_principal->getsalto()== true){
+
+        }
+
     }
 
 }

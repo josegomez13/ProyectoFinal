@@ -10,9 +10,10 @@
 #include <QKeyEvent>
 #include <QDebug>
 
-class bolita: public QGraphicsItem, public QObject // se realiza herencia
+class bolita:public QObject, public QGraphicsItem // se realiza herencia
 {
-// ATRIBUTOS PARA EL PERSONAJE
+    // ATRIBUTOS PARA EL PERSONAJE
+
 private:
 
     int posx;          // variable de la posición en X del personaje
@@ -26,7 +27,6 @@ private:
     bool salto;        // booleano que indica si el personaje está saltando
 
     QPixmap *pixmap;   // imagen del personaje
-    QTimer *time;      // tiempo
 
 public:
 
@@ -67,12 +67,15 @@ public:
     float getalto() const;
     void setalto(float value);
 
-//signals:
-    public slots:
-        void caidaLibre();//Funcion para la caida libre de los personajes
-        void saltar();//Funcion para el salto de los personajes
-        void actualizar_sprite_derecha();   //Funcion para actualizar el sprite para la derecha
-        void actualizar_sprite_izquierda(); //Funcion para actualizar el sprite para la izquierda
+    void saltando();//Funcion para el salto de los personajes
+
+    //signals:
+public slots:
+    void caidaLibre();//Funcion para la caida libre de los personajes
+    void actualizar_sprite_derecha();   //Funcion para actualizar el sprite para la derecha
+    void actualizar_sprite_izquierda(); //Funcion para actualizar el sprite para la izquierda
+
+private slots:
 
 };
 

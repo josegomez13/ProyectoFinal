@@ -50,6 +50,8 @@ public:
 
 
 
+     void setPY(float newPY);
+
 private:
     //limites de la nube
     //
@@ -72,7 +74,7 @@ private:
     int alto;
     int dy;
     int amplitud;
-    int sumador;
+    qreal sumador;
     int velocidad;
 
     // funciones que unicamente usará la nube
