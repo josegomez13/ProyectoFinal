@@ -43,7 +43,6 @@ private:
     // métodos propios
 
     bool EuvalarColision(void);
-    //void keyPressEvent(QKeyEvent *evento);
 
     //
     QTimer *controladorEventos;
@@ -61,7 +60,8 @@ private:
 
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene;
-    //void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
+    void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
+    bool EvaluarColision();
 
 public slots:
     void moverObjetos();

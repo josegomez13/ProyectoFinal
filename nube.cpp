@@ -1,4 +1,5 @@
 #include "nube.h"
+#include "nube.h"
 #include <math.h>
 #include <cmath>
 
@@ -8,23 +9,23 @@
 
 Nube::Nube(bool bandera)
 {
-    this->PX=10;
-    this->PY=20;
+    this->PX=100;
+    this->PY=100;
     this->ancho=20;
     this->alto=20;
     srand(time(0));
     timer= new QTimer();
-    timer->start(50);
+    timer->start(500);
     connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
 
 
-    /*
+
     // CENTRA
     this->setTransformOriginPoint(this->boundingRect().center());
 
-    alto=20;
-    ancho=200;
-    if(bandera==true){
+   // alto=20;
+   //ancho=200;
+    /*if(bandera==true){
     PX=100;//pos x
     PY=200;
     VX=-20;// velo en x
@@ -38,10 +39,10 @@ Nube::Nube(bool bandera)
     VX=20;// velo en x
     dy=100;
     }
+*/
 
 
-
-    PY=rand()%200;//pos y
+   // PY=rand()%200;//pos y
     mass=5;//masa
     R=10; //radio
     VY=25; // velo en y
@@ -55,8 +56,11 @@ Nube::Nube(bool bandera)
     dt=0.1; // delta de tiempo
     pixmap=new QPixmap(":/Imagenes/1200px-Clouds_Cute_for_CSS_sprites.svg.png");//direccion del sprite
     setScale(0.5);
-    this->moverHaciaDerecha = true;
-    this->ciclosLanzamientoDulces = 0;
+    amplitud =  5 + rand() % 10;
+    sumador =0;
+    velocidad = 10;
+    //this->moverHaciaDerecha = true;
+   // this->ciclosLanzamientoDulces = 0;
 
 
 
@@ -67,7 +71,7 @@ Nube::Nube(bool bandera)
     timer->start(50);
     connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
 
-*/
+
 }
 
 
@@ -162,16 +166,19 @@ float Nube::getVY() const
 Nube *Nube::nube()
 {
     return nube();
+    //Nube *nube = new Nube(0);
+    //return nube;
 }
 
 
 
 
 
-void Nube::moverDiagonalmente()
+void Nube::moverSinuidalmente()
 {
-    this->PX=this->PX+1;
-    this->PY = this->PY +1;
+    setPos(x()-velocidad*dt, y() + amplitud*sin(2*3.1415*sumador/2));
+            setPos(pos().x()-0.5,pos().y());
+
 
 }
 
@@ -263,7 +270,7 @@ void Nube::generarDulces()
 
 void Nube::controladorDeMovimientos()
 {
-    this->moverZigZag();
+    this->moverSinuidalmente();
     generarDulces();
     this->setPos(this->PX,this->PY);
     scene()->update();
