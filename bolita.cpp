@@ -62,11 +62,11 @@ bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos 
    //opciones para los personajes ---> (1). El  (2). Ella
 
    if(ElElla == 1){ // Se escoge como personaje al gordito
-         this->pixmap = new QPixmap("PONER CARPETA DE LA IMAGEN.PNG");
+         this->pixmap = new QPixmap("Imagenes/gordo-sprite.png");
    }
 
    else if(ElElla == 2){ // Se escoge como personaje a la gordita
-         this->pixmap = new QPixmap("PONER CARPETA DE LA IMAGEN.PNG");
+         this->pixmap = new QPixmap("Imagenes/gordo-sprite.png");
    }
 
    //Distancia en X y Y  a la que el personaje está en la ventana del juego inicialmente
@@ -85,41 +85,41 @@ bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos 
 
    //Booleano que indica si el personaje esta en el aire o no
    this->salto = false;
+}
 
-   //Retorna el valor de la posicion del personaje en el eje x
-   int bolita::getposx() const
-   {
-       return posx;
-   }
-   //Actualiza el valor de la posicion del personaje en el eje x
-   void bolita::setposx(int value)
-   {
-       posx = value;
-   }
-   //Retorna el valor de la posicion del personaje en el eje y
-   int bolita::getposy() const
-   {
-       return posy;
-   }
-   //Actualiza el valor de la posicion del personaje en el eje y
-   void bolita::setposy(int value)
-   {
-       posy = value;
-   }
-
-
+//Retorna el valor de la posicion del personaje en el eje x
+int bolita::getposx() const
+{
+    return posx;
+}
+//Actualiza el valor de la posicion del personaje en el eje x
+void bolita::setposx(int value)
+{
+    posx = value;
+}
+//Retorna el valor de la posicion del personaje en el eje y
+int bolita::getposy() const
+{
+    return posy;
+}
+//Actualiza el valor de la posicion del personaje en el eje y
+void bolita::setposy(int value)
+{
+    posy = value;
 }
 
 QRectF bolita::boundingRect() const // BoundingRect, es donde se va a dibujar el personaje
-
 {
     return QRectF(-ancho/2,-alto/2,ancho,alto);
 }
 
 void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
-
+    //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
+    painter->setBrush(Qt::red);
+    painter->drawRect(boundingRect());
+    //painter->drawPix
+    //painter->drawPixmap(-ancho/2,-alto/2,*pixmap);
 }
 
 void bolita::caidaLibre()
@@ -184,9 +184,9 @@ void bolita::enelsuelo()
 void bolita::actualizar_sprite_derecha()
 {   //Se recorre la matriz y se varia dy de a 128 pixeles para que el personaje se vea caminando
     //dx es estático dado que solo recorre la tercera fila
-    dx=333;
-    dy+=128;
-    if(dy >=128*4)
+    dx=0;
+    dy+=220;
+    if(dy >=640)
     {
         dy=0;
     }
@@ -197,9 +197,9 @@ void bolita::actualizar_sprite_izquierda()
 {
     //Se recorre la matriz y se varia dy de a 128 pixeles para que el personaje se vea caminando
     //dx es estatico dado que solo recorre la segunda fila
-    dx=168;
-    dy+=128;
-    if(dy >= 128*4)
+    dx=274;
+    dy+=220;
+    if(dy >= 640)
     {
         dy=0;
     }

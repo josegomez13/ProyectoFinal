@@ -13,6 +13,7 @@
 class bolita: public QGraphicsItem, public QObject // se realiza herencia
 {
 // ATRIBUTOS PARA EL PERSONAJE
+private:
 
     int posx;          // variable de la posición en X del personaje
     int posy;          // variable de la posición en Y del personaje
@@ -66,7 +67,7 @@ public:
     float getalto() const;
     void setalto(float value);
 
-signals:
+//signals:
     public slots:
         void caidaLibre();//Funcion para la caida libre de los personajes
         void saltar();//Funcion para el salto de los personajes

@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene= new QGraphicsScene();
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,700,450);
-    personaje_principal = new bolita(10,20,30); //x,y,tamaño
+    personaje_principal = new bolita(10,20,1); //x,y,tamaño
     scene->addItem(personaje_principal);
 
     Obstaculos.push_back(new obstaculo(0,0,700,20));
@@ -56,8 +56,8 @@ bool MainWindow::EvaluarColision()
     QList<obstaculo*>:: Iterator it; //itarador para recorrer la lista de obstaculos
     for(it= Obstaculos.begin(); it!= Obstaculos.end(); it++){
 
-       if((*it)-> collidesWithItem(personaje_principal))
-           colision = true;
+       /*if((*it)-> collidesWithItem(personaje_principal))
+           colision = true;*/
     }
     return colision;
 }

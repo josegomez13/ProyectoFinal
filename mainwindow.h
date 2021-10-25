@@ -50,5 +50,6 @@ private:
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
+    bool EvaluarColision();
 };
 #endif // MAINWINDOW_H

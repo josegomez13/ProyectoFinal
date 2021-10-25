@@ -150,6 +150,8 @@ float Nube::getVY() const
 Nube *Nube::nube()
 {
     return nube();
+    //Nube *nube = new Nube(0);
+    //return nube;
 }
 
 
