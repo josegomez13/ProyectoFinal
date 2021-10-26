@@ -11,8 +11,6 @@ bool Dulces::comprobarColision()
 }
 
 
-
-
 void Dulces::caerDulceConstantement()
 {
     this->posy=this->posy+this->velocidadCaida;

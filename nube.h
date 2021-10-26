@@ -34,9 +34,9 @@ public:
      float getVX() const;//velocidad en x
      float getVY() const;//velocidad en y
      float getE() const;//coeficiente
-     Nube *nube();//puntero de la clase mosca
-     QTimer  *timer;//timer de para la clase
-     QPixmap *pixmap;//pixmap para el sprite de las moscas
+     Nube *nube();//puntero de la clase nube
+     QTimer  *timer;//timer para la clase
+     QPixmap *pixmap;//pixmap para el sprite de la nube
      Dulces  *dulceSorpresa;
      int ciclosLanzamientoDulces;
      QVector <Dulces *> arregloDulces;

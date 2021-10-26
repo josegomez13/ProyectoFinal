@@ -158,20 +158,13 @@ float Nube::getVY() const
     return VY;
 }
 
-Nube *Nube::nube()
-{
-    return nube();
-    //Nube *nube = new Nube(0);
-    //return nube;
-}
-
 
 void Nube::moverSinuidalmente()
 {
     sumador = sumador + 0.02;
     qDebug()<< " sumador: " <<sumador<<endl;
     //PY = PY + amplitud*sin(2*3.1415*sumador/2);
-    setPos(PX, PY + amplitud*sin(2*3.1415*sumador/2));
+    setPos(PX, PY + amplitud*sin(2*3.1415*sumador/2)); //ecuación del movimiento sinusoidal de la nube
     //setPY(PY + amplitud*sin(2*3.1415*sumador/2));
     qDebug()<< " velocidad: " <<velocidad<<endl;
 
@@ -181,12 +174,12 @@ void Nube::moverSinuidalmente()
 
 void Nube::moverErraticamente()
 {
-    this->PX=this->PX+ 1+rand()%10;
+    this->PX=this->PX+ 1+rand()%10;// movimientos que se le puede implementar a la nube
     this->PY = this->PY + 1+rand()%10;
 
 }
 
-void Nube::moverZigZag()
+void Nube::moverZigZag() // movimientos que se le puede implementar a la nube
 {
 
     if (this->PX< 10 ) {
@@ -214,7 +207,7 @@ void Nube::generarDulces()
 {
     // vamos a implementar la generacion de dulces que caeran a partir de la posx posy
     // de la nube
-    if (this->ciclosLanzamientoDulces>3000) {
+    if (this->ciclosLanzamientoDulces>1000) {
         dulceSorpresa =  new Dulces(this->PX,this->PY);
 
         arregloDulces.push_back(dulceSorpresa);
