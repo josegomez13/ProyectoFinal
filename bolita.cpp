@@ -130,10 +130,9 @@ void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 }
 
-
 void bolita::caidaLibre()
 {   //Movimiento de Caida libre
-    if(this->posy>340){
+    if(this->posy>1060){
         tierra=true;
         this->salto = false;
         tiempo = 0;
@@ -162,7 +161,7 @@ void bolita::saltando()
         setPos(posx,posy);
         posy -= velocidad/2;
         setPos(posx,posy);
-        if(posy < 280){
+        if(posy < 603){
             tierra = true;
         }
 
@@ -171,10 +170,10 @@ void bolita::saltando()
         setPos(posx,posy);
         posy += velocidad/2;
         setPos(posx,posy);
-        if(posy > 340){
+        if(posy > 703){
             tierra = false;
             salto = false;
-            setposy(340);
+            setposy(703);
 
         }
     }
@@ -194,7 +193,7 @@ void bolita::MoveLeft()
 
 //Movimiento Lineal hacia la derecha
 void bolita::MoveRight()
-{   if(posx<940){   //Se limita el movimiento del personaje en la escena
+{   if(posx<1900){   //Se limita el movimiento del personaje en la escena
         posx += (velocidad/2);
         setPos(posx,posy);}
 }

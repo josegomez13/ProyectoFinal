@@ -3,12 +3,15 @@
 
 #include <QObject>
 #include <QGraphicsItem>
-#include <QObject>
 #include <QPainter>
 #include <QGraphicsScene>
-#include <iostream>
 #include <QTimer>
 #include <QList>
+#include <QPixmap>
+#include <QGraphicsPixmapItem>
+
+
+
 
 class Dulces : public QGraphicsItem, public QObject // se realiza herencia
 {
@@ -19,6 +22,7 @@ private:
     float posx;
     float posy;
     int   velocidadCaida;
+    float dx, dy;
 
 public:
     bool comprobarColision();
@@ -27,6 +31,7 @@ public:
     Dulces(float posx, float posy);
     QRectF boundingRect() const; // para dibujar el cuerpo
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
+    QPixmap *pixmap;//pixmap para el sprite de los dulces
 
 };
 

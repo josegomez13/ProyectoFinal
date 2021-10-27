@@ -50,20 +50,37 @@ private:
     Nube *nubePrueba;
     Ui::MainWindow *ui;
     QString nombre_usuario; // Variable que guardará el nombre del usuario
+    //Dulces
+    //QList<frutaBurbuja *> modificarFrutaBurbuja(QList<frutaBurbuja *> listaFrutaBurbuja, int posicion);
+    //QList<frutaBurbuja*> listaFrutaBurbuja;//Declaracion de la lista frutaBurbuja
     int guardar = 0;
     bool multijugador = false;
-    int seleccion_personaje, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
+    int seleccion_personaje = 1, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
     int distancia_recorrida; // distancia recorrida por el personaje en el "trote"
     QMessageBox msgBox; //Varible Cuadro de texto
     distancia *metros; //puntero metros de la clase distancia
     bolita *personaje_principal; //puntero para el personaje principal con los atributos de la clase bolita :3
-
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
 
+    //NIVELES
+
+    int nivelActual = 0;
+    void primerNivel();
+    void segundoNivel();
+    void muerte();
+    void pantallaMenu();
+
 public slots:
     void moverObjetos();
+
+private slots:
+    void on_iniciarButton_clicked();
+    void on_instruccionesButton_clicked();
+    void on_MultijugadorButton_clicked();
+    void on_historiaButton_clicked();
 };
+
 #endif // MAINWINDOW_H

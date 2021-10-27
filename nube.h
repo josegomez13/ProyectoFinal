@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
-#include <stdlib.h>
 #include <time.h>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
@@ -13,6 +12,7 @@
 #include "dulces.h"
 #include <iostream>
 #include <QVector>
+#include <bolita.h>
 
 
 class Nube :public QObject, public QGraphicsItem
@@ -40,6 +40,7 @@ public:
      Dulces  *dulceSorpresa;
      int ciclosLanzamientoDulces;
      QVector <Dulces *> arregloDulces;
+     //QVector<dulces *> modificarArregloDulces(QVector<dulces *> arregloDulces, int posicion);
 
      // jugando
 
@@ -73,9 +74,11 @@ private:
     int ancho;
     int alto;
     int dy;
+    int dx;
     int amplitud;
     qreal sumador;
     int velocidad;
+
 
     // funciones que unicamente usará la nube
 
