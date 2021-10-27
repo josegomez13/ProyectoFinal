@@ -13,6 +13,7 @@
 #include <time.h>
 //#include <QtWidgets>
 //#include <QtGui>
+
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -33,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->setupUi(this);
+   // ui->eliminarPartida->hide();
+   // ui->cargarPartida->hide();
     scene= new QGraphicsScene();
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,700,450);
@@ -104,6 +107,18 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(!this->EuvalarColision())
             personaje_principal->saltar();
     }
+
+    if(guardar==0)
+    {
+        //Se escribe en el archivo guardar el cual es el fichero con permisos de escritura
+        ofstream Fichero;
+        Fichero.open("guardar.txt",ios::out| ios::app);//Se abre el archivo
+        Fichero<<nombre_usuario.toStdString()<<" "<<to_string(nivelActual)<<" "<<to_string(Puntos->obtenerPuntos())<<endl;
+        Fichero.close();//Se cierra el archivo
+        guardar=0;
+    }
+    guardar=0;
+
 
 }
 

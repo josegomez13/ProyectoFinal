@@ -14,6 +14,7 @@
 #include <QListWidget>
 #include <nube.h>
 #include <QTimer>
+#include <QMediaPlayer>
 
 
 
@@ -50,7 +51,7 @@ private:
     Nube *nubePrueba;
     Ui::MainWindow *ui;
     QString nombre_usuario; // Variable que guardará el nombre del usuario
-    int guardar = 0;
+    int guardar = 0; //contador
     bool multijugador = false;
     int seleccion_personaje, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
     int distancia_recorrida; // distancia recorrida por el personaje en el "trote"
@@ -63,7 +64,14 @@ private:
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
 
+    //sonidos aqui creamos los punteros para los sonidos de inicio y del disparo
+    QMediaPlayer * music = new QMediaPlayer();
+    QMediaPlayer * disparo = new QMediaPlayer();
+
 public slots:
     void moverObjetos();
+    void on_cargarPartida_clicked();//Funcion Cargar partida
+    void on_eliminarPartida_clicked();//Funcion eliminar partida
+    int nivelActual=0;
 };
 #endif // MAINWINDOW_H
