@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
-#include <stdlib.h>
 #include <time.h>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
@@ -13,6 +12,7 @@
 #include "dulces.h"
 #include <iostream>
 #include <QVector>
+#include <bolita.h>
 
 
 class Nube :public QObject, public QGraphicsItem
@@ -34,12 +34,13 @@ public:
      float getVX() const;//velocidad en x
      float getVY() const;//velocidad en y
      float getE() const;//coeficiente
-     Nube *nube();//puntero de la clase mosca
-     QTimer  *timer;//timer de para la clase
-     QPixmap *pixmap;//pixmap para el sprite de las moscas
+     Nube *nube();//puntero de la clase nube
+     QTimer  *timer;//timer para la clase
+     QPixmap *pixmap;//pixmap para el sprite de la nube
      Dulces  *dulceSorpresa;
      int ciclosLanzamientoDulces;
      QVector <Dulces *> arregloDulces;
+     //QVector<dulces *> modificarArregloDulces(QVector<dulces *> arregloDulces, int posicion);
 
      // jugando
 
@@ -49,6 +50,8 @@ public:
      void generarDulces();
 
 
+
+     void setPY(float newPY);
 
 private:
     //limites de la nube
@@ -71,9 +74,11 @@ private:
     int ancho;
     int alto;
     int dy;
+    int dx;
     int amplitud;
-    int sumador;
+    qreal sumador;
     int velocidad;
+
 
     // funciones que unicamente usará la nube
 

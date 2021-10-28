@@ -2,7 +2,8 @@
 #include "nube.h"
 #include <math.h>
 #include <cmath>
-
+#include<QDebug>
+#include <bolita.h>
 
 
 
@@ -11,56 +12,32 @@ Nube::Nube(bool bandera)
 {
     this->PX=100;
     this->PY=100;
-    this->ancho=20;
-    this->alto=20;
+    this->ancho=600;
+    this->alto=400;
     srand(time(0));
     timer= new QTimer();
     timer->start(500);
     connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
+    this->dx=0;
+    this->dy=600;
 
 
 
     // CENTRA
     this->setTransformOriginPoint(this->boundingRect().center());
 
-   // alto=20;
-   //ancho=200;
-    /*if(bandera==true){
-    PX=100;//pos x
-    PY=200;
-    VX=-20;// velo en x
-    dy=0;
-
-    }
-
-
-    if(bandera==false){
-    PX=50;//pos x
-    VX=20;// velo en x
-    dy=100;
-    }
-*/
-
-
-   // PY=rand()%200;//pos y
-    mass=5;//masa
-    R=10; //radio
     VY=25; // velo en y
-    angulo;//angulo
     AX=0;// acel en x
     AY=0; // acel en y
     g=1; //gravedad
-    K=(rand()%10)/1000; // resistencia del aire
-    //e=(0.5+(rand()%5)/10); // coeficiente de restitucion
     V=0; //vector de velocidad;
-    dt=0.1; // delta de tiempo
-    pixmap=new QPixmap(":/Imagenes/1200px-Clouds_Cute_for_CSS_sprites.svg.png");//direccion del sprite
+    dt=0.02; // delta de tiempo
+    this->pixmap=new QPixmap(":/Backgrounds games/nube.png");//direccion del sprite
     setScale(0.5);
-    amplitud =  5 + rand() % 10;
-    sumador =0;
-    velocidad = 10;
+    amplitud =  25;
+    velocidad = 150;
     //this->moverHaciaDerecha = true;
-   // this->ciclosLanzamientoDulces = 0;
+    // this->ciclosLanzamientoDulces = 0;
 
 
 
@@ -73,10 +50,6 @@ Nube::Nube(bool bandera)
 
 
 }
-
-
-
-
 
 
 void Nube::actualizarPosyVel()//funcion para realizar el calculo de la posicion y la velocidad
@@ -96,7 +69,6 @@ QRectF Nube::boundingRect() const
 {
     // boundingrect, es donde se va a dibujar.
     return QRectF(-ancho/2,-alto/2,ancho,alto);
-    //return QRectF(ancho/2,alto/2,ancho,alto);
 }
 
 
@@ -104,14 +76,9 @@ QRectF Nube::boundingRect() const
 
 void Nube::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,0,ancho,alto);
-    painter->drawRect(this->PX,this->PY,this->ancho,this->alto);
+    painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
 
 }
-
-
-
-
 
 void Nube::set_vel(float vx, float vy, float px, float py)
 {
@@ -128,9 +95,6 @@ void Nube::actual(float v_limit)
     this->actualizarPosyVel();//actualizo la pisicion y la velocidad del objeto
     setPos(this->getPX(),v_limit-this->getPY());//le asigno la posicion en X y Y al objeto
 }
-
-
-
 
 
 float Nube::getPX() const
@@ -163,50 +127,30 @@ float Nube::getVY() const
     return VY;
 }
 
-Nube *Nube::nube()
-{
-    return nube();
-    //Nube *nube = new Nube(0);
-    //return nube;
-}
-
-
-
-
 
 void Nube::moverSinuidalmente()
 {
-    setPos(x()-velocidad*dt, y() + amplitud*sin(2*3.1415*sumador/2));
-            setPos(pos().x()-0.5,pos().y());
-
+    sumador = sumador + 0.02;
+    setPos(PX, PY + amplitud*sin(2*3.1415*sumador/2)); //ecuación del movimiento sinusoidal de la nube
 
 }
-
-
-
-
 
 
 void Nube::moverErraticamente()
 {
-    this->PX=this->PX+ 1+rand()%10;
+    this->PX=this->PX+ 1+rand()%10;// movimientos que se le puede implementar a la nube
     this->PY = this->PY + 1+rand()%10;
 
 }
 
-
-
-
-void Nube::moverZigZag()
+void Nube::moverZigZag() // movimientos que se le puede implementar a la nube
 {
-
-
 
     if (this->PX< 10 ) {
         // movernos hacia la derecha
         this->moverHaciaDerecha = true;
     }
-    if (this->PX > 400) {
+    if (this->PX > 1900) {
         // movernos hacia la izquierda
         this->moverHaciaDerecha = false;
     }
@@ -220,19 +164,13 @@ void Nube::moverZigZag()
     }
 
 
-    // modificar el interval
-
-
 }
-
-
-
 
 void Nube::generarDulces()
 {
     // vamos a implementar la generacion de dulces que caeran a partir de la posx posy
     // de la nube
-    if (this->ciclosLanzamientoDulces>3000) {
+    if (this->ciclosLanzamientoDulces>2000) {
         dulceSorpresa =  new Dulces(this->PX,this->PY);
 
         arregloDulces.push_back(dulceSorpresa);
@@ -241,6 +179,19 @@ void Nube::generarDulces()
         scene()->addItem(arregloDulces.back());
         this->ciclosLanzamientoDulces=0;
         //this->timer->stop();
+
+       /* for (int i = 0; i<arregloDulces.size(); i++) {
+                    if (personaje_principal->collidesWithItem(arregloDulces.at(i))){
+                        scene->removeItem(arregloDulces.at(i));
+                       // arregloDulces=modificarFrutaBurbuja(listaFrutaBurbuja,i);
+
+
+
+
+                        }
+                }*/
+
+
     }
     else{
         // 50 mils
@@ -264,15 +215,18 @@ void Nube::generarDulces()
 
 }
 
-
-
+void Nube::setPY(float newPY)
+{
+    PY = newPY;
+}
 
 
 void Nube::controladorDeMovimientos()
 {
-    this->moverSinuidalmente();
+    this->moverSinuidalmente(); // movimiento en x
+    this->moverZigZag(); // movimiento en y
     generarDulces();
-    this->setPos(this->PX,this->PY);
+    // this->setPos(this->PX,this->PY);
     scene()->update();
 
 }

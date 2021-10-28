@@ -59,30 +59,33 @@ bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos 
     this->posx=x;//Posicion en x del personaje
     this->posy=y;//Posicion en y del personaje
 
-   setPos(posx, posy); // dar la posición
+    this->dx =0;
+    this->dy =0;
 
-   //opciones para los personajes ---> (1). El  (2). Ella
+    setPos(posx, posy); // dar la posición
 
-   if(ElElla == 1){ // Se escoge como personaje al gordito
-         this->pixmap = new QPixmap("Imagenes/gordo-sprite.png");
-   }
+    //opciones para los personajes ---> (1). El  (2). Ella
 
-   else if(ElElla == 2){ // Se escoge como personaje a la gordita
-         this->pixmap = new QPixmap("Imagenes/gordo-sprite.png");
-   }
+    if(ElElla == 1){ // Se escoge como personaje al gordito
+        this->pixmap = new QPixmap(":/Imagenes/gordo-sprite.png");
+    }
 
-   //Ancho y alto de la imagen del personaje
-   this->ancho = 124;
-   this->alto=160;
+    else if(ElElla == 2){ // Se escoge como personaje a la gordita
+        this->pixmap = new QPixmap(":/Imagenes/gordo-sprite.png");
+    }
 
-   //Gravedad del personaje
-   this->gravedad = 1;
+    //Ancho y alto de la imagen del personaje
+    this->ancho = 220;
+    this->alto=274;
 
-   //Booleano que indica si el personaje esta en tierra o no
-   this->tierra = true;
+    //Gravedad del personaje
+    this->gravedad = 1;
 
-   //Booleano que indica si el personaje esta en el aire o no
-   this->salto = false;
+    //Booleano que indica si el personaje esta en tierra o no
+    this->tierra = false;
+
+    //Booleano que indica si el personaje esta en el aire o no
+    this->salto = false;
 }
 
 //Retorna el valor de la posicion del personaje en el eje x
@@ -104,7 +107,7 @@ int bolita::getposy() const
 void bolita::setposy(int value)
 {
     posy = value;
-   //Retorna el valor de la posicion del personaje en el eje x
+    //Retorna el valor de la posicion del personaje en el eje x
 
 }
 
@@ -115,22 +118,21 @@ QRectF bolita::boundingRect() const // BoundingRect, es donde se va a dibujar el
 
 void bolita::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    //painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
+    painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,dx,ancho,alto);
 
-    painter->setBrush(Qt::red);
-   // painter->drawRect(boundingRect());
+    //painter->setBrush(Qt::red);
+    // painter->drawRect(boundingRect());
     //painter->drawPix
     //painter->drawPixmap(-ancho/2,-alto/2,*pixmap);
-   // painter->drawRect(posx,posy,10,10);
-    painter->drawRect(0,0,10,10);
+    // painter->drawRect(posx,posy,10,10);
+    //painter->drawRect(0,0,10,10);
 
 
 }
 
-
 void bolita::caidaLibre()
 {   //Movimiento de Caida libre
-    if(this->posy>450){
+    if(this->posy>1060){
         tierra=true;
         this->salto = false;
         tiempo = 0;
@@ -146,24 +148,37 @@ void bolita::caidaLibre()
         }
         tiempo+= 0.5; }//Incremento del tiempo
 
-        //Se obtiene la posicion del personaje cuando se realizó el movimiento de caida libre
-        setPos(posx,posy);
+    //Se obtiene la posicion del personaje cuando se realizó el movimiento de caida libre
+    setPos(posx,posy);
     this->update(-ancho/2,-alto/2,ancho,alto);//Actualizacion de la posicion en todo instante de tiempo
 
 }
 
-
-void bolita::saltar()
+void bolita::saltando()
 {   //Funcion saltar
-    if (this->tiempo == 0){
-        this->tiempo = 1;
-        posy-= this->velocidad*this->tiempo;//Formula de caida Libre
-        this->salto = true;//Se verifica si esta en el aire o no
-    }
-    //Se obtiene la posicion del personaje cuando se realizo el salto
-      setPos(posx,posy);
+    if(tierra == false){
+        //Se obtiene la posicion del personaje cuando se realizo el salto
+        setPos(posx,posy);
+        posy -= velocidad/2;
+        setPos(posx,posy);
+        if(posy < 603){
+            tierra = true;
+        }
 
+    }
+    if(tierra == true){
+        setPos(posx,posy);
+        posy += velocidad/2;
+        setPos(posx,posy);
+        if(posy > 703){
+            tierra = false;
+            salto = false;
+            setposy(703);
+
+        }
+    }
 }
+
 
 //Movimiento Lineal hacia la izquierda
 
@@ -171,16 +186,16 @@ void bolita::MoveLeft()
 
 {
     if(posx>10){    //Se limita el movimiento del personaje en la escena
-    posx -= (velocidad/2);
-    setPos(posx,posy);}
+        posx -= (velocidad/2);
+        setPos(posx,posy);}
 }
 
 
 //Movimiento Lineal hacia la derecha
 void bolita::MoveRight()
-{   if(posx<940){   //Se limita el movimiento del personaje en la escena
-    posx += (velocidad/2);
-    setPos(posx,posy);}
+{   if(posx<1900){   //Se limita el movimiento del personaje en la escena
+        posx += (velocidad/2);
+        setPos(posx,posy);}
 }
 
 //Funcion que verifica si el personaje esta en tierra a traves del booleano tierra
