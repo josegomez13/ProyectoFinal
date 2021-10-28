@@ -246,7 +246,7 @@ void MainWindow::on_iniciarButton_clicked()
 
 void MainWindow::on_instruccionesButton_clicked()
 {
-<<<<<<< HEAD
+
   QTextStream io;
   QFile arch;
   QString contenido;
@@ -257,10 +257,6 @@ void MainWindow::on_instruccionesButton_clicked()
    contenido = io.readAll();
    arch.close();
   qDebug() << contenido;
-=======
-
->>>>>>> d61ca65449744a17e88e77e9283bdebc9b591cda
-
 }
 
 

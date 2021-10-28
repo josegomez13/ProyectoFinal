@@ -260,15 +260,13 @@ background-color: rgb(255, 255, 0);</string>
    <zorder>MultijugadorButton</zorder>
    <zorder>iniciarButton</zorder>
    <zorder>CargarPartidaButton_2</zorder>
-<<<<<<< HEAD
-   <zorder>CargaPartidaButton_3</zorder>
-=======
-   <zorder>GuardarPartidaButton_3</zorder>
+
+<zorder>GuardarPartidaButton_3</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
->>>>>>> d61ca65449744a17e88e77e9283bdebc9b591cda
+
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
