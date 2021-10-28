@@ -51,7 +51,8 @@
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/Backgrounds games/fondo2.PNG);</string>
+     <string notr="true">border-image: url(:/Backgrounds games/fondo2.PNG);
+</string>
     </property>
    </widget>
    <widget class="QPushButton" name="iniciarButton">
@@ -76,7 +77,7 @@ background-color: rgb(255, 255, 0);</string>
    <widget class="QPushButton" name="instruccionesButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>250</x>
       <y>940</y>
       <width>131</width>
       <height>41</height>
@@ -95,7 +96,7 @@ background-color: rgb(255, 255, 0);</string>
    <widget class="QPushButton" name="MultijugadorButton">
     <property name="geometry">
      <rect>
-      <x>1470</x>
+      <x>1500</x>
       <y>940</y>
       <width>141</width>
       <height>41</height>
@@ -114,7 +115,7 @@ background-color: rgb(255, 255, 0);</string>
    <widget class="QPushButton" name="historiaButton">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>110</x>
       <y>940</y>
       <width>121</width>
       <height>41</height>
@@ -133,7 +134,7 @@ background-color: rgb(255, 255, 0);</string>
    <widget class="QPushButton" name="CargarPartidaButton_2">
     <property name="geometry">
      <rect>
-      <x>1300</x>
+      <x>1320</x>
       <y>940</y>
       <width>141</width>
       <height>41</height>
@@ -152,7 +153,7 @@ background-color: rgb(255, 255, 0);</string>
    <widget class="QPushButton" name="CargaPartidaButton_3">
     <property name="geometry">
      <rect>
-      <x>1140</x>
+      <x>1120</x>
       <y>940</y>
       <width>141</width>
       <height>41</height>
@@ -168,13 +169,106 @@ background-color: rgb(255, 255, 0);</string>
      <string>Guardar Partida</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>70</y>
+      <width>181</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Backgrounds games/avion_preview_rev_1.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/avion_preview_rev_1.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>730</y>
+      <width>271</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Backgrounds games/agachado_preview_rev_2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/agachado_preview_rev_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>1060</x>
+      <y>650</y>
+      <width>211</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Backgrounds games/patineta_preview_rev_2.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../../../Downloads/patineta_preview_rev_2.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>100</y>
+      <width>991</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/Backgrounds games/titulo.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>graphicsView</zorder>
    <zorder>instruccionesButton</zorder>
    <zorder>historiaButton</zorder>
    <zorder>MultijugadorButton</zorder>
    <zorder>iniciarButton</zorder>
    <zorder>CargarPartidaButton_2</zorder>
+<<<<<<< HEAD
    <zorder>CargaPartidaButton_3</zorder>
+=======
+   <zorder>GuardarPartidaButton_3</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+>>>>>>> d61ca65449744a17e88e77e9283bdebc9b591cda
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -182,7 +276,7 @@ background-color: rgb(255, 255, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1920</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

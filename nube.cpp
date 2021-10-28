@@ -8,19 +8,19 @@
 
 
 
-Nube::Nube(bool bandera)
+Nube::Nube(bool bandera, bolita *personaje)
 {
     this->PX=200;
     this->PY=200;
     this->ancho=600;
     this->alto=400;
-    srand(time(0));
-    timer= new QTimer();
-    timer->start(500);
-    connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
+    //srand(time(0));
+    //timer= new QTimer();
+    //timer->start(500);
+    //connect(timer,SIGNAL(timeout()),this,SLOT(controladorDeMovimientos()));
     this->dx=0;
     this->dy=600;
-
+    this->personajePrincipal = personaje;
 
 
     // CENTRA
@@ -131,6 +131,9 @@ float Nube::getVY() const
 void Nube::moverSinuidalmente()
 {
     sumador = sumador + 0.02;
+    if (sumador >= 2){
+        sumador = 0;
+    }
     setPos(PX, PY + amplitud*sin(2*3.1415*sumador/2)); //ecuación del movimiento sinusoidal de la nube
 
 }
@@ -150,7 +153,7 @@ void Nube::moverZigZag() // movimientos que se le puede implementar a la nube
         // movernos hacia la derecha
         this->moverHaciaDerecha = true;
     }
-    if (this->PX > 1900) {
+    if (this->PX > 15000) {
         // movernos hacia la izquierda
         this->moverHaciaDerecha = false;
     }
@@ -180,16 +183,6 @@ void Nube::generarDulces()
         this->ciclosLanzamientoDulces=0;
         //this->timer->stop();
 
-       /* for (int i = 0; i<arregloDulces.size(); i++) {
-                    if (personaje_principal->collidesWithItem(arregloDulces.at(i))){
-                        scene->removeItem(arregloDulces.at(i));
-                       // arregloDulces=modificarFrutaBurbuja(listaFrutaBurbuja,i);
-
-
-
-
-                        }
-                }*/
 
 
     }
@@ -209,6 +202,11 @@ void Nube::generarDulces()
             std::cout << "El dulce ha sido eliminado" <<std::endl;
 
             //arregloDulces.at(i);
+        }
+        if(iterador->collidesWithItem(this->personajePrincipal)){
+            scene()->removeItem(iterador);
+            arregloDulces.removeAt(i);
+            std::cout << "El dulce ha colisionado con el personaje y ha sido eliminado" <<std::endl;
         }
         i++;
     }

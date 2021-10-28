@@ -41,7 +41,7 @@ void MainWindow::primerNivel()
     personaje_principal = new bolita(90,50,seleccion_personaje);
     scene->addItem(personaje_principal);
     personaje_principal->setScale(0.4);
-*/    
+*/
 
     //Botones que se muestran en el GraphicView cuando se abre el juego
 
@@ -51,11 +51,22 @@ void MainWindow::primerNivel()
     ui->instruccionesButton->hide();
     ui->MultijugadorButton->hide();
     ui->historiaButton->hide();
-    //ui->cargarButton->hide();
+    ui->CargarPartidaButton_2->hide();
+    ui->GuardarPartidaButton_3->hide();
 
     scene->setBackgroundBrush(QImage(":/Backgrounds games/nivel1.png"));
-    ui->graphicsView->resize(1000,1000);
-    this->resize(1000,1000);
+    //ui->graphicsView->resize(1000,1000);
+    //this->resize(1000,1000);
+
+    int iteradorGotitas = 0;
+    while (iteradorGotitas < 16){
+        gotita = new gotitas(600+(900*iteradorGotitas));
+        listaGotitas.push_back(gotita);
+        scene->addItem(gotita);
+        iteradorGotitas += 1;
+    }
+
+
     controladorEventos =  new QTimer();
     controladorEventos->start(100);
     connect(controladorEventos,SIGNAL(timeout()),this,SLOT(moverObjetos()));
@@ -64,20 +75,9 @@ void MainWindow::primerNivel()
     personaje_principal = new bolita(400,750,seleccion_personaje); //x,y,tamaño
     scene->addItem(personaje_principal);
 
-    nubePrueba =  new Nube(true);
+    nubePrueba =  new Nube(true, personaje_principal);
     scene->addItem(nubePrueba);
 
-    Obstaculos.push_back(new obstaculo(0,0,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,200,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,0,20,400));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(340,0,20,400));
-    scene->addItem(Obstaculos.back());
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -99,31 +99,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
 
-   // ui->eliminarPartida->hide();
-   // ui->cargarPartida->hide();
+    // ui->eliminarPartida->hide();
+    // ui->cargarPartida->hide();
 
     scene= new QGraphicsScene(0, 0, 15312, 1041);
 
     ui->graphicsView->setScene(scene);
-    /*
-   // scene->setSceneRect(0,0,700,450);
-    personaje_principal = new bolita(220,274,seleccion_personaje); //x,y,tamaño
-    scene->addItem(personaje_principal);
 
-    nubePrueba =  new Nube(true);
-    scene->addItem(nubePrueba);
-
-    Obstaculos.push_back(new obstaculo(0,0,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,200,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,0,20,400));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(340,0,20,400));
-    scene->addItem(Obstaculos.back());*/
 }
 
 MainWindow::~MainWindow()
@@ -159,6 +141,15 @@ bool MainWindow::EuvalarColision(void)
 
 void MainWindow::moverObjetos()
 {
+
+    for(int i=0; i<listaGotitas.count();i++){
+        gotitas *gotitaActual = listaGotitas.at(i);
+        if(gotitaActual-> collidesWithItem(personaje_principal))
+            scene->removeItem(gotitaActual);
+            listaGotitas.removeOne(gotitaActual);
+            cout << "zoe" <<i<<endl;
+    }
+
     if(personaje_principal->getsalto() == true){
         personaje_principal->saltando();
 
@@ -167,6 +158,7 @@ void MainWindow::moverObjetos()
         controladorEventos->stop();
 
     }
+
 }
 
 void MainWindow::actualizar_gotitas()
@@ -201,6 +193,11 @@ void MainWindow::muerte()
     mensaje.show();
     mensaje.exec();
     QApplication::quit();
+}
+
+void MainWindow::pantallaMenu()
+{
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *evento)
@@ -239,12 +236,17 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
 void MainWindow::on_iniciarButton_clicked()
 {
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->label_3->hide();
+    ui->label_4->hide();
     primerNivel();
 }
 
 
 void MainWindow::on_instruccionesButton_clicked()
 {
+<<<<<<< HEAD
   QTextStream io;
   QFile arch;
   QString contenido;
@@ -255,6 +257,9 @@ void MainWindow::on_instruccionesButton_clicked()
    contenido = io.readAll();
    arch.close();
   qDebug() << contenido;
+=======
+
+>>>>>>> d61ca65449744a17e88e77e9283bdebc9b591cda
 
 }
 
@@ -276,44 +281,49 @@ void MainWindow::GuardarPartidaButton_3_clicked()
         //Se escribe en el archivo guardar el cual es el fichero con permisos de escritura
         ofstream Fichero;
         Fichero.open("guardar.txt",ios::out| ios::app);//Se abre el archivo
-        Fichero<<nombre_usuario.toStdString()<<" "<<to_string(primerNivel())<<" "<<to_string(metros->obtenervida())<<endl;
+        //Fichero<<nombre_usuario.toStdString()<<" "<<to_string(primerNivel())<<" "<<to_string(metros->obtenervida())<<endl;
         Fichero.close();//Se cierra el archivo
         guardar=0;
     }
     guardar=0;
 }
 
+void MainWindow::on_eliminarPartida_clicked()
+{
+
+}
+
 void MainWindow::CargarPartidaButton_2_clicked()
 {
     bool existePartida = false;
     cout<<"Cargar";
-   // if(escogerPersonaje==1 || escogerPersonaje==2){//Condicion para Jugar en CargarPartida
-        //Variables de lectura
-        string nombrePos;
-        string puntosPos;
-        ifstream archivo;
-        archivo.open("guardar.txt");//Se abre el archivo
-        cout<<"2";
-        while(!archivo.eof()) //Mientras el archivo este abierto, lleve al archivo las variables
+    // if(escogerPersonaje==1 || escogerPersonaje==2){//Condicion para Jugar en CargarPartida
+    //Variables de lectura
+    string nombrePos;
+    string puntosPos;
+    ifstream archivo;
+    archivo.open("guardar.txt");//Se abre el archivo
+    cout<<"2";
+    while(!archivo.eof()) //Mientras el archivo este abierto, lleve al archivo las variables
+    {
+        archivo>>nombrePos;
+        archivo>>puntosPos;
+        cout<<"3";
+        if(nombrePos==nombre_usuario.toStdString())
         {
-            archivo>>nombrePos;
-            archivo>>puntosPos;
-            cout<<"3";
-            if(nombrePos==nombre_usuario.toStdString())
-            {
 
-                metros->asignarVidas(stoi(puntosPos));//Se convierten los puntos en int
-                existePartida=true;//Se verifica que exista la partida
+            metros->asignarVidas(stoi(puntosPos));//Se convierten los puntos en int
+            existePartida=true;//Se verifica que exista la partida
 
-            }
         }
+    }
 
 
-        archivo.close();//Se cierra el archivo
-        cout<<"4";
-        if(existePartida==false){//Condicion en caso tal que el usuario no haya jugado
+    archivo.close();//Se cierra el archivo
+    cout<<"4";
+    if(existePartida==false){//Condicion en caso tal que el usuario no haya jugado
 
-          /*  Mensaje.setText("DEBES HABER JUGADO EN MODO: 1 JUGADOR");
+        /*  Mensaje.setText("DEBES HABER JUGADO EN MODO: 1 JUGADOR");
             Mensaje.setInformativeText("");
             Mensaje.exec();
 
@@ -326,7 +336,7 @@ void MainWindow::CargarPartidaButton_2_clicked()
 
     }
 */
-}
+    }
 
 
 }
