@@ -12,18 +12,22 @@ SOURCES += \
     bolita.cpp \
     distancia.cpp \
     dulces.cpp \
+    gotitas.cpp \
     main.cpp \
     mainwindow.cpp \
     nube.cpp \
-    obstaculo.cpp
+    obstaculo.cpp \
+    vida.cpp
 
 HEADERS += \
     bolita.h \
     distancia.h \
     dulces.h \
+    gotitas.h \
     mainwindow.h \
     nube.h \
-    obstaculo.h
+    obstaculo.h \
+    vida.h
 
 FORMS += \
     mainwindow.ui

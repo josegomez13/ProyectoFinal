@@ -14,15 +14,18 @@
 #include <QListWidget>
 #include <nube.h>
 #include <QTimer>
-
-
-
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <bolita.h>
+#include <gotitas.h>
+#include <dulces.h>
 // MIS CLASES
 
 #include <bolita.h>
 #include <nube.h>
 #include <obstaculo.h>
 #include <distancia.h>
+#include <vida.h>
 using namespace std;
 
 QT_BEGIN_NAMESPACE
@@ -51,8 +54,12 @@ private:
     Ui::MainWindow *ui;
     QString nombre_usuario; // Variable que guardará el nombre del usuario
     //Dulces
-    //QList<frutaBurbuja *> modificarFrutaBurbuja(QList<frutaBurbuja *> listaFrutaBurbuja, int posicion);
-    //QList<frutaBurbuja*> listaFrutaBurbuja;//Declaracion de la lista frutaBurbuja
+    QList<gotitas *> modificarGotitas(QList<gotitas *> listaGotitas, int posicion);
+    QList<gotitas *> listaGotitas;//Declaracion de la lista frutaBurbuja
+
+    QList<Vida *> modificarVida(QList<Vida *> listaVida, int posicion);
+    QList<Vida *> listaVida;
+
     int guardar = 0;
     bool multijugador = false;
     int seleccion_personaje = 1, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
@@ -61,7 +68,11 @@ private:
     distancia *metros; //puntero metros de la clase distancia
     bolita *personaje_principal; //puntero para el personaje principal con los atributos de la clase bolita :3
     QList<obstaculo*>Obstaculos;
-    QGraphicsScene *scene;
+    QGraphicsScene *scene = new QGraphicsScene(this);
+    QGraphicsView *view = new QGraphicsView(this);
+    gotitas *gota1,*gota2,*gota3,*gota4,*gota5,*gota6,*gota7,*gota8,*gota9,*gota10,*gota11,*gota12,*gota13,*gota14,*gota15,*gota16;
+    Vida *vida1,*vida2,*vida3,*vida4,*vida5;//Creacion de punteros de la clase vida
+    QList<Dulces *> dulces;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
 
@@ -75,6 +86,8 @@ private:
 
 public slots:
     void moverObjetos();
+    void actualizar_gotitas();//Se actualiza la cantidad de gotitas que hay
+    void actualizar_vida();//Se actualiza la cantidad de vidas que hay
 
 private slots:
     void on_iniciarButton_clicked();

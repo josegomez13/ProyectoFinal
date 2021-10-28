@@ -19,8 +19,8 @@
 #include <string.h>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
-
-
+#include <QGraphicsView>
+#include <dulces.h>
 //función primer nivel
 void MainWindow::primerNivel()
 {
@@ -51,12 +51,14 @@ void MainWindow::primerNivel()
     //ui->cargarButton->hide();
 
     scene->setBackgroundBrush(QImage(":/Backgrounds games/nivel1.png"));
-            controladorEventos =  new QTimer();
+    ui->graphicsView->resize(1000,1000);
+    this->resize(1000,1000);
+    controladorEventos =  new QTimer();
     controladorEventos->start(100);
     connect(controladorEventos,SIGNAL(timeout()),this,SLOT(moverObjetos()));
     //      el que envia la señal, que señal , la clase  ,  slot que recibe
 
-    personaje_principal = new bolita(400,703,seleccion_personaje); //x,y,tamaño
+    personaje_principal = new bolita(400,750,seleccion_personaje); //x,y,tamaño
     scene->addItem(personaje_principal);
 
     nubePrueba =  new Nube(true);
@@ -74,6 +76,10 @@ void MainWindow::primerNivel()
     Obstaculos.push_back(new obstaculo(340,0,20,400));
     scene->addItem(Obstaculos.back());
 
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->centerOn(personaje_principal->x(), personaje_principal->y());
+
 
 }
 
@@ -89,7 +95,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->setupUi(this);
-    scene= new QGraphicsScene(0, 0, 1920, 1080);
+    scene= new QGraphicsScene(0, 0, 15312, 1041);
     ui->graphicsView->setScene(scene);
     /*
    // scene->setSceneRect(0,0,700,450);
@@ -117,7 +123,18 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QList<gotitas *> MainWindow::modificarGotitas(QList<gotitas *> listaGotitas, int posicion)
+{
+    listaGotitas.removeAt(posicion);
+    return listaGotitas; //Retorna la lista actualizada
+}
+//Funcion que remueve de la listaVida la vida que el personaje Perdio
+QList<Vida *> MainWindow::modificarVida(QList<Vida *> listaVida, int posicion)
+{
+    listaVida.removeAt(posicion);
+    return listaVida;//Retorna la lista actualizada
 
+}
 
 bool MainWindow::EuvalarColision(void)
 {
@@ -144,6 +161,40 @@ void MainWindow::moverObjetos()
     }
 }
 
+void MainWindow::actualizar_gotitas()
+{
+    for(int i=0; i<listaGotitas.count();i++){
+        listaGotitas[i]->sprite_gotita();
+    }
+}
+
+void MainWindow::actualizar_vida()
+{
+    // si el personaje colisiona con un dulce pierde vida
+
+    for (int i = 0; i<dulces.count(); i++){
+        if (personaje_principal->collidesWithItem(dulces.at(i))){
+            scene->removeItem(listaVida.at(0));//Se remueve la vida de escena
+            listaVida=modificarVida(listaVida,0);
+            if(listaVida.count()==0){
+                muerte();//Si la lista esta vacia se invoca la funcion muerte
+            }
+        }
+    }
+}
+
+
+//funcion muerte del personaje
+
+void MainWindow::muerte()
+{
+    QMessageBox mensaje;
+    mensaje.setIconPixmap(QPixmap(":/Backgrounds games/gorditocaido.PNG"));
+    mensaje.show();
+    mensaje.exec();
+    QApplication::quit();
+}
+
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
     if(evento->key()==Qt::Key_D)
@@ -151,6 +202,8 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(!this->EuvalarColision())
             personaje_principal->MoveRight();
         personaje_principal->actualizar_sprite_derecha();
+        ui->graphicsView->centerOn(personaje_principal->x(), personaje_principal->y());
+
     }
 
     else if(evento->key()==Qt::Key_A)
@@ -158,6 +211,8 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(!this->EuvalarColision())
             personaje_principal->MoveLeft();
         personaje_principal->actualizar_sprite_izquierda();
+        ui->graphicsView->centerOn(personaje_principal->x(), personaje_principal->y());
+
     }
 
     else if(evento->key()==Qt::Key_W)
@@ -171,16 +226,6 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         }
 
     }
-    /* for (int i = 0; i<listadulces.size(); i++) {
-            if (personaje_principal->collidesWithItem(listadulces.at(i))){
-                scene->removeItem(listadulces.at(i));
-                listadulces=modificarFrutaBurbuja(listadulces,i);
-
-
-
-
-                }
-        }*/
 
 }
 
