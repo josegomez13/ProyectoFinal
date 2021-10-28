@@ -21,7 +21,7 @@ class Nube :public QObject, public QGraphicsItem
   Q_OBJECT
 public:
 
-    Nube(bool bandera);//constructor de la clase
+    Nube(bool bandera, bolita *personaje);//constructor de la clase
     void actualizarPosyVel();//actualizarla posicion y la velocidad de la clase
     QRectF boundingRect() const;//para dibujar
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;//para dibujar al sprite
@@ -76,8 +76,9 @@ private:
     int dy;
     int dx;
     int amplitud;
-    qreal sumador;
+    float sumador = 0;
     int velocidad;
+    bolita *personajePrincipal;
 
 
     // funciones que unicamente usará la nube

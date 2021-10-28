@@ -20,12 +20,14 @@ void gotitas::setPosy(int value)
 {
     posy = value;
 }
-gotitas::gotitas(QObject *parent): QObject(parent)
+gotitas::gotitas(int _x)
 {
     pixmap = new QPixmap(":/Backgrounds games/gotica.png");
     dy =0;
     ancho = 50;//Ancho del pixmap
     alto=50;//Alto del pixmap
+    this->x = _x;
+    setPos(this->x,550);
 }
 
 

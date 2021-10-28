@@ -41,7 +41,7 @@ void MainWindow::primerNivel()
     personaje_principal = new bolita(90,50,seleccion_personaje);
     scene->addItem(personaje_principal);
     personaje_principal->setScale(0.4);
-*/    
+*/
 
     //Botones que se muestran en el GraphicView cuando se abre el juego
 
@@ -55,8 +55,18 @@ void MainWindow::primerNivel()
     ui->GuardarPartidaButton_3->hide();
 
     scene->setBackgroundBrush(QImage(":/Backgrounds games/nivel1.png"));
-    ui->graphicsView->resize(1000,1000);
-    this->resize(1000,1000);
+    //ui->graphicsView->resize(1000,1000);
+    //this->resize(1000,1000);
+
+    int iteradorGotitas = 0;
+    while (iteradorGotitas < 16){
+        gotita = new gotitas(600+(900*iteradorGotitas));
+        listaGotitas.push_back(gotita);
+        scene->addItem(gotita);
+        iteradorGotitas += 1;
+    }
+
+
     controladorEventos =  new QTimer();
     controladorEventos->start(100);
     connect(controladorEventos,SIGNAL(timeout()),this,SLOT(moverObjetos()));
@@ -65,20 +75,9 @@ void MainWindow::primerNivel()
     personaje_principal = new bolita(400,750,seleccion_personaje); //x,y,tamaño
     scene->addItem(personaje_principal);
 
-    nubePrueba =  new Nube(true);
+    nubePrueba =  new Nube(true, personaje_principal);
     scene->addItem(nubePrueba);
 
-    Obstaculos.push_back(new obstaculo(0,0,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,200,700,20));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(0,0,20,400));
-    scene->addItem(Obstaculos.back());
-
-    Obstaculos.push_back(new obstaculo(340,0,20,400));
-    scene->addItem(Obstaculos.back());
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -142,6 +141,15 @@ bool MainWindow::EuvalarColision(void)
 
 void MainWindow::moverObjetos()
 {
+
+    for(int i=0; i<listaGotitas.count();i++){
+        gotitas *gotitaActual = listaGotitas.at(i);
+        if(gotitaActual-> collidesWithItem(personaje_principal))
+            scene->removeItem(gotitaActual);
+            listaGotitas.removeOne(gotitaActual);
+            cout << "zoe" <<i<<endl;
+    }
+
     if(personaje_principal->getsalto() == true){
         personaje_principal->saltando();
 
@@ -150,6 +158,7 @@ void MainWindow::moverObjetos()
         controladorEventos->stop();
 
     }
+
 }
 
 void MainWindow::actualizar_gotitas()
@@ -227,6 +236,10 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
 void MainWindow::on_iniciarButton_clicked()
 {
+    ui->label->hide();
+    ui->label_2->hide();
+    ui->label_3->hide();
+    ui->label_4->hide();
     primerNivel();
 }
 

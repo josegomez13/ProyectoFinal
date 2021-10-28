@@ -14,8 +14,11 @@
 class gotitas: public QObject, public QGraphicsItem
 
 {
+private:
+    int x;
+
 public:
-    explicit gotitas(QObject *parent = nullptr);//Atributos que pose cada frutaburbuja
+    explicit gotitas(int _x);//Atributos que pose cada frutaburbuja
     int posx, posy;//Posicion en x y y del personaje
     float dx, dy;  //variables para controlar las filas y las columnas del sprite
     float ancho,alto;//Ancho y alto de la imagen

@@ -64,6 +64,7 @@ private:
 
     QList<gotitas *> modificarGotitas(QList<gotitas *> listaGotitas, int posicion);
     QList<gotitas *> listaGotitas;//Declaracion de la lista frutaBurbuja
+    gotitas *gotita;
 
     QList<Vida *> modificarVida(QList<Vida *> listaVida, int posicion);
     QList<Vida *> listaVida;

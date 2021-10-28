@@ -193,7 +193,7 @@ void bolita::MoveLeft()
 
 //Movimiento Lineal hacia la derecha
 void bolita::MoveRight()
-{   if(posx<1900){   //Se limita el movimiento del personaje en la escena
+{   if(posx<15000){   //Se limita el movimiento del personaje en la escena
         posx += (velocidad/2);
         setPos(posx,posy);}
 }
