@@ -5,7 +5,7 @@
 
 bool Dulces::comprobarColision() // funcion que retorna un booleano cuando el dulce toque el limite de la pantalla
 {
-    if (this->posy>818) {
+    if (this->posy>880) {
         return true;
     }
 

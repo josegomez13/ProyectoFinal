@@ -170,10 +170,10 @@ void bolita::saltando()
         setPos(posx,posy);
         posy += velocidad/2;
         setPos(posx,posy);
-        if(posy > 703){
+        if(posy > 750){
             tierra = false;
             salto = false;
-            setposy(703);
+            setposy(750);
 
         }
     }

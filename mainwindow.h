@@ -14,7 +14,12 @@
 #include <QListWidget>
 #include <nube.h>
 #include <QTimer>
-#include <QMediaPlayer>
+//#include <QMediaPlayer>
+
+
+
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 
 
@@ -24,6 +29,9 @@
 #include <nube.h>
 #include <obstaculo.h>
 #include <distancia.h>
+#include <vida.h>
+#include <gotitas.h>
+#include <dulces.h>
 using namespace std;
 
 QT_BEGIN_NAMESPACE
@@ -53,8 +61,14 @@ private:
     QString nombre_usuario; // Variable que guardará el nombre del usuario
     int guardar = 0; //contador
     //Dulces
-    //QList<frutaBurbuja *> modificarFrutaBurbuja(QList<frutaBurbuja *> listaFrutaBurbuja, int posicion);
-    //QList<frutaBurbuja*> listaFrutaBurbuja;//Declaracion de la lista frutaBurbuja
+
+    QList<gotitas *> modificarGotitas(QList<gotitas *> listaGotitas, int posicion);
+    QList<gotitas *> listaGotitas;//Declaracion de la lista frutaBurbuja
+
+    QList<Vida *> modificarVida(QList<Vida *> listaVida, int posicion);
+    QList<Vida *> listaVida;
+
+
     bool multijugador = false;
     int seleccion_personaje = 1, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
     int distancia_recorrida; // distancia recorrida por el personaje en el "trote"
@@ -62,28 +76,32 @@ private:
     distancia *metros; //puntero metros de la clase distancia
     bolita *personaje_principal; //puntero para el personaje principal con los atributos de la clase bolita :3
     QList<obstaculo*>Obstaculos;
-    QGraphicsScene *scene;
+    QGraphicsScene *scene = new QGraphicsScene(this);
+    QGraphicsView *view = new QGraphicsView(this);
+    gotitas *gota1,*gota2,*gota3,*gota4,*gota5,*gota6,*gota7,*gota8,*gota9,*gota10,*gota11,*gota12,*gota13,*gota14,*gota15,*gota16;
+    Vida *vida1,*vida2,*vida3,*vida4,*vida5;//Creacion de punteros de la clase vida
+    QList<Dulces *> dulces;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
+     void primerNivel();
     //sonidos aqui creamos los punteros para los sonidos de inicio y del disparo
-    QMediaPlayer * music = new QMediaPlayer();
-    QMediaPlayer * disparo = new QMediaPlayer();
+    //QMediaPlayer * music = new QMediaPlayer();
+    //QMediaPlayer * disparo = new QMediaPlayer();
 
 public slots:
     void moverObjetos();
-    void on_cargarPartida_clicked();//Funcion Cargar partida
+    void CargarPartidaButton_2_clicked();//Funcion Cargar partida
+    void GuardarPartidaButton_3_clicked();//Funcion guardar partida
     void on_eliminarPartida_clicked();//Funcion eliminar partida
-    int nivelActual=0;
-    //NIVELES
 
-    int nivelActual = 0;
-    void primerNivel();
-    void segundoNivel();
+    void actualizar_gotitas();//Se actualiza la cantidad de gotitas que hay
+    void actualizar_vida();//Se actualiza la cantidad de vidas que hay
+
+
     void muerte();
     void pantallaMenu();
 
-public slots:
-    void moverObjetos();
+
 
 private slots:
     void on_iniciarButton_clicked();

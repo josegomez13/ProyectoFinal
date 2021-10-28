@@ -10,8 +10,8 @@
 
 Nube::Nube(bool bandera)
 {
-    this->PX=100;
-    this->PY=100;
+    this->PX=200;
+    this->PY=200;
     this->ancho=600;
     this->alto=400;
     srand(time(0));
