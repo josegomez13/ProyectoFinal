@@ -1,0 +1,39 @@
+Instrucciones del juego
+
+---------------------------------------------------------------------------------|
+|Para comenzar a jugar debés registrarte con tu nombre, esto porque más adelante
+|usaremos esta información para guardar tu progreso
+|
+|  °Asi como guardar partida, podrás cargar tu progreso, para retomar donde                                                                                 |
+|   dejaste el juego y conservar tus progresos                                                                            |
+|
+|  °El juego esta desarrollado para entretenerte mientras vás cruzando un nivel,
+|    la dificultad del juego ira subiendo a medida que avances con tu personaje
+|
+|
+|
+|    °Movimiento del personaje
+      - Movimiento vertical (salto) -> W
+      - Movimiento lateral izquierdo (mover hacia la izquierda) -> A
+      - Movimiento lateral derecho (mover hacia la derecha) -> D
+|
+|
+|   °Bonus del juego
+      A medida que vas recorriendo el mapa, podrás encontrar gotas de agua,
+      las cuales te serviran para dar más vida al personaje
+
+    °Objetos que deberás esquivar
+    No todo es color de rosa!, existen dulces que buscan quitarte vida y distraerte
+    de tu mision principal que es avanzar por el mapa, esquivalos antes de que te toquen
+    para así avanzar lo maximo posible hacia tu meta saludable
+    |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|

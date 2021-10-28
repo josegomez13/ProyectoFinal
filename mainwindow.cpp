@@ -245,9 +245,16 @@ void MainWindow::on_iniciarButton_clicked()
 
 void MainWindow::on_instruccionesButton_clicked()
 {
+  QTextStream io;
+  QFile arch;
+  QString contenido;
 
-
-
+  arch.setFileName(":/Instrucciones.txt");
+  arch.open(QIODevice::Text | QIODevice::ReadOnly);
+  io.setDevice(&arch);
+   contenido = io.readAll();
+   arch.close();
+  qDebug() << contenido;
 
 }
 
