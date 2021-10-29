@@ -53,6 +53,16 @@ void bolita::setalto(float value)
 }
 
 
+int bolita::getVidas() const
+{
+    return vidas;
+}
+
+void bolita::setVidas(int newVidas)
+{
+    vidas = newVidas;
+}
+
 bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos la posicion x y y un valor entero que decide que personaje seleccionar
 {  //Se usa this para indicar el objeto actual en el que se trabajo, esto para evitar confusiones con las variables locales y dar seguridad que se esta trabajando en esta
 
@@ -61,6 +71,8 @@ bolita::bolita(int x, int y, int ElElla)//Constructor que recibe como atributos 
 
     this->dx =0;
     this->dy =0;
+
+    this->vidas = 3;
 
     setPos(posx, posy); // dar la posición
 
@@ -192,10 +204,15 @@ void bolita::MoveLeft()
 
 
 //Movimiento Lineal hacia la derecha
-void bolita::MoveRight()
+bool bolita::MoveRight()
 {   if(posx<15000){   //Se limita el movimiento del personaje en la escena
         posx += (velocidad/2);
-        setPos(posx,posy);}
+        setPos(posx,posy);
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 //Funcion que verifica si el personaje esta en tierra a traves del booleano tierra

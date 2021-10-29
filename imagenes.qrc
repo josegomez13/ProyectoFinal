@@ -11,5 +11,7 @@
         <file>Backgrounds games/avion_preview_rev_1.png</file>
         <file>Backgrounds games/agachado_preview_rev_2.png</file>
         <file>Backgrounds games/titulo.png</file>
+        <file>Backgrounds games/ganaste.png</file>
+        <file>Backgrounds games/historia1.png</file>
     </qresource>
 </RCC>

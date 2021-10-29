@@ -14,8 +14,6 @@
 class gotitas: public QObject, public QGraphicsItem
 
 {
-private:
-    int x;
 
 public:
     explicit gotitas(int _x);//Atributos que pose cada frutaburbuja
@@ -37,8 +35,6 @@ public:
     int getPosy() const;//Retorna un entero de la posicion en y
     void setPosy(int value);//Actualiza el valor de la posicion en y
 
-public slots:
-    void sprite_gotita();//Funcion que actualiza la gotita
 
 };
 

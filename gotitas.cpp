@@ -26,8 +26,8 @@ gotitas::gotitas(int _x)
     dy =0;
     ancho = 50;//Ancho del pixmap
     alto=50;//Alto del pixmap
-    this->x = _x;
-    setPos(this->x,550);
+    this->posx = _x;
+    setPos(this->posx,550);
 }
 
 
@@ -42,13 +42,3 @@ void gotitas::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->drawPixmap(-ancho/2,-alto/2,*pixmap,dy,0,ancho,alto);
 }
 
-//Sprite de la gotita que recorre la imagen
-void gotitas::sprite_gotita()
-{   dx=0;
-    dy+=50;//Varia dy porque la imagen de recorre hacia la derecha por esto es una sumatoria de posiciones
-    if(dy >= 50*6)
-    {
-        dy=0;
-    }
-    this->update(-ancho/2,-alto/2,ancho,alto);//Actualizacion de la imagen
-}

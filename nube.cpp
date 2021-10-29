@@ -160,10 +160,10 @@ void Nube::moverZigZag() // movimientos que se le puede implementar a la nube
 
 
     if (this->moverHaciaDerecha==true) {
-        this->PX=this->PX+3;
+        this->PX=this->PX+12;
     }
     else{
-        this->PX = this->PX-3;
+        this->PX = this->PX-12;
     }
 
 
@@ -187,8 +187,13 @@ void Nube::generarDulces()
 
     }
     else{
-        // 50 mils
-        this->ciclosLanzamientoDulces+=50;
+        if(this->getPX()<7000){
+            // 50 mils
+            this->ciclosLanzamientoDulces+=150;
+        } else {
+            // 125 mils
+            this->ciclosLanzamientoDulces+=200;
+        }
     }
 
 
@@ -204,6 +209,7 @@ void Nube::generarDulces()
             //arregloDulces.at(i);
         }
         if(iterador->collidesWithItem(this->personajePrincipal)){
+            this->personajePrincipal->setVidas(this->personajePrincipal->getVidas()-1);
             scene()->removeItem(iterador);
             arregloDulces.removeAt(i);
             std::cout << "El dulce ha colisionado con el personaje y ha sido eliminado" <<std::endl;

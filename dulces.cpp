@@ -31,8 +31,8 @@ Dulces::Dulces(float _posx, float _posy)
     srand(time(0));
     this->posx=_posx;
     this->posy=_posy;
-    this->ancho = 20;
-    this->alto  = 20;
+    this->ancho = 40;
+    this->alto  = 40;
     this->dx =0;
     this->dy =0;
     this->velocidadCaida = 1 + rand() % 6;

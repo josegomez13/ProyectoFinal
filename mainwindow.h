@@ -55,6 +55,7 @@ private:
 
     //
     QTimer *controladorEventos;
+    QTimer *controladorVidas;
     bool bandera;
     Nube *nubePrueba;
     Ui::MainWindow *ui;
@@ -68,7 +69,7 @@ private:
 
     QList<Vida *> modificarVida(QList<Vida *> listaVida, int posicion);
     QList<Vida *> listaVida;
-
+    int vidas = 3;
 
     bool multijugador = false;
     int seleccion_personaje = 1, seleccion_personaje2 = 1; //entero que dice cual de los dos personajes se escogió
@@ -79,8 +80,8 @@ private:
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene = new QGraphicsScene(this);
     QGraphicsView *view = new QGraphicsView(this);
-    gotitas *gota1,*gota2,*gota3,*gota4,*gota5,*gota6,*gota7,*gota8,*gota9,*gota10,*gota11,*gota12,*gota13,*gota14,*gota15,*gota16;
-    Vida *vida1,*vida2,*vida3,*vida4,*vida5;//Creacion de punteros de la clase vida
+    //gotitas *gota1,*gota2,*gota3,*gota4,*gota5,*gota6,*gota7,*gota8,*gota9,*gota10,*gota11,*gota12,*gota13,*gota14,*gota15,*gota16;
+    Vida *vida1,*vida2,*vida3;//Creacion de punteros de la clase vida
     QList<Dulces *> dulces;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
@@ -95,11 +96,11 @@ public slots:
     void GuardarPartidaButton_3_clicked();//Funcion guardar partida
     void on_eliminarPartida_clicked();//Funcion eliminar partida
 
-    void actualizar_gotitas();//Se actualiza la cantidad de gotitas que hay
     void actualizar_vida();//Se actualiza la cantidad de vidas que hay
 
 
     void muerte();
+    void ganar();
     void pantallaMenu();
 
 
@@ -107,9 +108,10 @@ public slots:
 private slots:
     void on_iniciarButton_clicked();
     void on_instruccionesButton_clicked();
-    void on_MultijugadorButton_clicked();
     void on_historiaButton_clicked();
-
+    void on_CargarPartidaButton_2_clicked();
+    //void on_label_5_windowTitleChanged(const QString &title);
+    void on_atrasButton_clicked();
 };
 
 #endif // MAINWINDOW_H

@@ -25,6 +25,7 @@ private:
     float tiempo;
     bool tierra;       // booleano que indica si el personaje está parado en la tierra
     bool salto;        // booleano que indica si el personaje está saltando
+    int vidas;
 
     QPixmap *pixmap;   // imagen del personaje
 
@@ -38,7 +39,7 @@ public:
     int getposy() const;       //retorna un entero en la posición en y
     void setposy(int newPosy); //actualiza ese valor
     void MoveLeft(); // movimientos lineales del personaje
-    void MoveRight();
+    bool MoveRight();
     void enelsuelo(); //choque del personaje con el suelo
 
 
@@ -70,6 +71,9 @@ public:
     void saltando();//Funcion para el salto de los personajes
 
     //signals:
+    int getVidas() const;
+    void setVidas(int newVidas);
+
 public slots:
     void caidaLibre();//Funcion para la caida libre de los personajes
     void actualizar_sprite_derecha();   //Funcion para actualizar el sprite para la derecha

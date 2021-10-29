@@ -40,10 +40,10 @@ Vida::Vida(int x, int y)
     this->posy=y;
     this->dx = 0;
     this->dy =0;
-    this->pixmapVidaAgua=new QPixmap("");
+    this->pixmapVidaAgua=new QPixmap(":/Backgrounds games/gotica.png");
     //Ancho y alto de la imagen
-    this->ancho=60;
-    this->alto=60;
+    this->ancho=50;
+    this->alto=50;
     setPos(posx,posy);
 
 }
