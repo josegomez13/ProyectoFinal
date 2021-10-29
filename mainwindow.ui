@@ -283,8 +283,24 @@ background-color: rgb(255, 255, 0);</string>
      <string>Atrás</string>
     </property>
    </widget>
-   <zorder>graphicsView</zorder>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>30</y>
+      <width>1181</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Backgrounds games/imagen.png</pixmap>
+    </property>
+   </widget>
    <zorder>instruccionesButton</zorder>
+   <zorder>graphicsView</zorder>
    <zorder>historiaButton</zorder>
    <zorder>iniciarButton</zorder>
    <zorder>CargarPartidaButton_2</zorder>
@@ -296,6 +312,7 @@ background-color: rgb(255, 255, 0);</string>
    <zorder>lineEdit</zorder>
    <zorder>atrasButton</zorder>
    <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

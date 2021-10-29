@@ -139,8 +139,6 @@ bool MainWindow::EuvalarColision(void)
     QList<obstaculo*>:: Iterator it; //itarador para recorrer la lista de obstaculos
     for(it= Obstaculos.begin(); it!= Obstaculos.end(); it++){
 
-        /*if((*it)-> collidesWithItem(personaje_principal))
-           colision = true;*/
     }
     return colision;
 }
@@ -219,7 +217,6 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
     if(evento->key()==Qt::Key_D)
     {
-        //if(!this->EuvalarColision())
         bool gana = personaje_principal->MoveRight();
         if (gana == true){
             ganar();
@@ -234,14 +231,12 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
     else if(evento->key()==Qt::Key_A)
     {
-        //if(!this->EuvalarColision())
         personaje_principal->MoveLeft();
         personaje_principal->actualizar_sprite_izquierda();
         ui->graphicsView->centerOn(personaje_principal->x(), personaje_principal->y());
         for (int i=0; i<listaVida.count(); i++) {
             listaVida.at(i)->setPosx(personaje_principal->getposx() + 50*(i-1));
             listaVida.at(i)->setPos(listaVida.at(i)->getPosx(), listaVida.at(i)->getPosy());
-            //listaVida.at(i)->upda
         }
     }
 

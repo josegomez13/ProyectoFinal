@@ -70,7 +70,6 @@ private:
     float K; // resistencia del aire
     float V; //vector de velocidad;
     float dt; // delta de tiempo
-    //pixmap
     int ancho;
     int alto;
     int dy;

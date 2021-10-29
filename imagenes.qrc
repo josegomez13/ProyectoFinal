@@ -13,5 +13,6 @@
         <file>Backgrounds games/titulo.png</file>
         <file>Backgrounds games/ganaste.png</file>
         <file>Backgrounds games/historia1.png</file>
+        <file>Backgrounds games/imagen.png</file>
     </qresource>
 </RCC>

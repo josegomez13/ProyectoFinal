@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QList> // para utilizar el Qlist
-//#include <QDesktopWidget>
 #include <QDebug>// para imprimir mensajes en la terminal
 #include <QMessageBox> // para imprimir mensajes como recuadros
 #include <QVector> // para usar los Qvector
@@ -80,15 +79,12 @@ private:
     QList<obstaculo*>Obstaculos;
     QGraphicsScene *scene = new QGraphicsScene(this);
     QGraphicsView *view = new QGraphicsView(this);
-    //gotitas *gota1,*gota2,*gota3,*gota4,*gota5,*gota6,*gota7,*gota8,*gota9,*gota10,*gota11,*gota12,*gota13,*gota14,*gota15,*gota16;
     Vida *vida1,*vida2,*vida3;//Creacion de punteros de la clase vida
     QList<Dulces *> dulces;
     void keyPressEvent(QKeyEvent *evento); //reconocer cuando una tecla ha sido presionada
     bool EvaluarColision();
      void primerNivel();
-    //sonidos aqui creamos los punteros para los sonidos de inicio y del disparo
-    //QMediaPlayer * music = new QMediaPlayer();
-    //QMediaPlayer * disparo = new QMediaPlayer();
+
 
 public slots:
     void moverObjetos();
